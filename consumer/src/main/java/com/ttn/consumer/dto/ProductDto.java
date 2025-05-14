@@ -1,6 +1,7 @@
 package com.ttn.consumer.dto;
 
-import lombok.Builder;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,9 +9,12 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@Builder
 public class ProductDto {
+    @NotBlank(message = "Product name is required")
     private String name;
+
+    @Min(value = 1, message = "Quantity must be at least 1")
     private Integer quantity;
+
     private BigDecimal price;
 }
