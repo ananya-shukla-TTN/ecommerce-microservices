@@ -10,7 +10,10 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class ProductDto {
+public class OrderProductDto {
+    @NotNull(message = "Product id cannot be null")
+    private String id;
+
     @NotBlank(message = "Product name is required")
     private String name;
 
@@ -19,6 +22,4 @@ public class ProductDto {
 
     @NotNull(message = "Price cannot be null")
     private BigDecimal price;
-
-    private String category;
 }

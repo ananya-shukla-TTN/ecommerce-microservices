@@ -1,7 +1,7 @@
 package com.ttn.consumer.model;
 
 import com.ttn.consumer.constant.OrderStatus;
-import com.ttn.consumer.dto.ProductDto;
+import com.ttn.consumer.dto.OrderProductDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +24,5 @@ public class Order {
     private LocalDateTime dateCreated;
     private BigDecimal totalAmount;
     private OrderStatus orderStatus;
-    private List<ProductDto> products;
+    private List<OrderProductDto> products;
 }

@@ -21,5 +21,5 @@ public class OrderDto {
     private BigDecimal totalAmount;
 
     @NotEmpty(message = "Order must have at least one product")
-    private List<ProductDto> products;
+    private List<OrderProductDto> products;
 }
