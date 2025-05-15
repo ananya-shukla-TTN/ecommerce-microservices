@@ -31,4 +31,10 @@ public class ProductService {
         return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
     }
+
+    public void updateProductQuantity(String id, Integer quantity) {
+        Product product = getProductById(id);
+        product.setAvailableQuantity(product.getAvailableQuantity() - quantity);
+        productRepository.save(product);
+    }
 }
