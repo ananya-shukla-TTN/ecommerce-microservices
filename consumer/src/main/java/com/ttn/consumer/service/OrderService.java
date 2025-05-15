@@ -3,6 +3,7 @@ package com.ttn.consumer.service;
 import com.ttn.consumer.constant.OrderStatus;
 import com.ttn.consumer.dto.OrderDto;
 import com.ttn.consumer.dto.OrderProductDto;
+import com.ttn.consumer.exception.InsufficientStockException;
 import com.ttn.consumer.model.Order;
 import com.ttn.consumer.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class OrderService {
            OrderProductDto product = restTemplateService.getProduct(orderItem.getId());
 
             if (product.getAvailableQuantity() < orderItem.getQuantity()) {
-                throw new RuntimeException("Insufficient stock for product: " + product.getName());
+                throw new InsufficientStockException("Insufficient stock for product: " + product.getName());
             }
 
             BigDecimal itemTotal = product.getPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity()));

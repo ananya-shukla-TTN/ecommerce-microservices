@@ -1,5 +1,6 @@
 package com.ttn.consumer.dto;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,5 +22,5 @@ public class OrderDto {
     private BigDecimal totalAmount;
 
     @NotEmpty(message = "Order must have at least one product")
-    private List<OrderProductDto> products;
+    private List<@Valid OrderProductDto> products;
 }
