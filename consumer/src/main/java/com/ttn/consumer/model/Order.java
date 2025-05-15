@@ -2,10 +2,10 @@ package com.ttn.consumer.model;
 
 import com.ttn.consumer.constant.OrderStatus;
 import com.ttn.consumer.dto.ProductDto;
-import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
