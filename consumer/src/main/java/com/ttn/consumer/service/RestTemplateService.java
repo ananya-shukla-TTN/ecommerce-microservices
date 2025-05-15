@@ -17,4 +17,10 @@ public class RestTemplateService {
     public OrderProductDto getProduct(String id){
         return restTemplate.getForObject(producerServiceUrl + "/" + id, OrderProductDto.class);
     }
+
+    public void updateStock(String id, Integer quantity){
+        restTemplate.put(producerServiceUrl +
+                "/" + id +
+                "/update-quantity?quantity=" + quantity, null);
+    }
 }

@@ -23,12 +23,14 @@ public class OrderService {
         for (OrderProductDto orderItem : orderDto.getProducts()) {
            OrderProductDto product = restTemplateService.getProduct(orderItem.getId());
 
-            if (product.getQuantity() < orderItem.getQuantity()) {
+            if (product.getAvailableQuantity() < orderItem.getQuantity()) {
                 throw new RuntimeException("Insufficient stock for product: " + product.getName());
             }
 
             BigDecimal itemTotal = product.getPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity()));
             totalAmount = totalAmount.add(itemTotal);
+
+            restTemplateService.updateStock(orderItem.getId(), orderItem.getQuantity());
         }
 
         Order order = Order.builder()

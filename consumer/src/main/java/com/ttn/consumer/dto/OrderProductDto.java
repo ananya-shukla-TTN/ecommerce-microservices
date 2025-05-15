@@ -22,4 +22,6 @@ public class OrderProductDto {
 
     @NotNull(message = "Price cannot be null")
     private BigDecimal price;
+
+    private Integer availableQuantity;
 }
