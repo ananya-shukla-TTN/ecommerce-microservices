@@ -1,6 +1,7 @@
 package com.ttn.producer.service;
 
 import com.ttn.producer.dto.ProductDto;
+import com.ttn.producer.exception.ProductNotFoundException;
 import com.ttn.producer.model.Product;
 import com.ttn.producer.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class ProductService {
 
     public Product getProductById(String id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ProductNotFoundException("No product exists with the id provided."));
     }
 
     public void updateProductQuantity(String id, Integer quantity) {
