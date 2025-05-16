@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,16 +30,15 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable String id){
-        Product product = productService.getProductById(id);
-        return new ResponseEntity<>(product, HttpStatus.OK);
+    @PostMapping("/secure-product")
+    public ResponseEntity<Map<String, String>> getProduct(@RequestBody Map<String, String> encryptedRequest) {
+        Map<String, String> encryptedResponse = productService.getEncryptedProduct(encryptedRequest);
+        return ResponseEntity.ok(encryptedResponse);
     }
 
-    @PutMapping("/{id}/update-quantity")
-    public ResponseEntity<String> updateProductQuantity(@PathVariable String id,
-                                                        @RequestParam Integer quantity){
-        productService.updateProductQuantity(id, quantity);
-        return new ResponseEntity<>("Quantity updated successfully", HttpStatus.OK);
+    @PutMapping("/update-quantity")
+    public ResponseEntity<Void> updateQuantity(@RequestBody Map<String, String> encryptedRequest) {
+        productService.updateEncryptedQuantity(encryptedRequest);
+        return ResponseEntity.ok().build();
     }
 }
