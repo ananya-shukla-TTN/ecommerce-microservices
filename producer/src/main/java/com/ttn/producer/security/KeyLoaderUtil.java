@@ -20,21 +20,21 @@ public class KeyLoaderUtil {
 
     private static final String RSA_ALGORITHM = "RSA";
 
-    @Value("${consumer.private.key.path}")
-    private String consumerPrivateKeyPath;
-
-    @Value("${consumer.public.key.path}")
-    private String consumerPublicKeyPath;
+    @Value("${producer.private.key.path}")
+    private String producerPrivateKeyPath;
 
     @Value("${producer.public.key.path}")
     private String producerPublicKeyPath;
+
+    @Value("${consumer.public.key.path}")
+    private String consumerPublicKeyPath;
 
     public PublicKey loadConsumerPublicKey() throws Exception {
         return loadPublicKey(consumerPublicKeyPath);
     }
 
-    public PrivateKey loadConsumerPrivateKey() throws Exception {
-        return loadPrivateKey(consumerPrivateKeyPath);
+    public PrivateKey loadProducerPrivateKey() throws Exception {
+        return loadPrivateKey(producerPrivateKeyPath);
     }
 
     public PublicKey loadProducerPublicKey() throws Exception {
