@@ -5,6 +5,8 @@ target/
 !**/src/test/**/target/
 
 keys/
+*.crt
+*.p12
 
 ### STS ###
 .apt_generated
