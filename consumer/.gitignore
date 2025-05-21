@@ -5,6 +5,8 @@ target/
 !**/src/test/**/target/
 
 keys/
+*.crt
+*.p12
 
 ### STS ###
 .apt_generated
@@ -16,8 +18,7 @@ keys/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
-*.iws
+.idea*.iws
 *.iml
 *.ipr
 
