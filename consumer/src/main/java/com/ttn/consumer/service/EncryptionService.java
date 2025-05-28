@@ -14,10 +14,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class EncryptionService {
     private final KeyLoaderUtil keyLoaderUtil;
+    private final AESEncryptionUtil aesEncryptionUtil;
 
     public Map<String, String> encryptForProducer(String data) throws Exception {
-        SecretKey aesKey = AESEncryptionUtil.generateAESKey();
-        String encryptedData = AESEncryptionUtil.encrypt(data, aesKey);
+        SecretKey aesKey = aesEncryptionUtil.generateAESKey();
+        String encryptedData = aesEncryptionUtil.encrypt(data, aesKey);
         String encryptedKey = RSAEncryptionUtil.encryptAESKeyWithRSA(aesKey,
                 keyLoaderUtil.loadProducerPublicKey());
 
@@ -32,7 +33,7 @@ public class EncryptionService {
         SecretKey aesKey = RSAEncryptionUtil.decryptAESKeyWithRSA(encryptedMessage.get("encryptedKey"),
                 keyLoaderUtil.loadConsumerPrivateKey());
         System.out.println("Decrypted data:" +
-                AESEncryptionUtil.decrypt(encryptedMessage.get("encryptedData"), aesKey));
-        return AESEncryptionUtil.decrypt(encryptedMessage.get("encryptedData"), aesKey);
+                aesEncryptionUtil.decrypt(encryptedMessage.get("encryptedData"), aesKey));
+        return aesEncryptionUtil.decrypt(encryptedMessage.get("encryptedData"), aesKey);
     }
 }
