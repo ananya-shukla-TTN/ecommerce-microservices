@@ -1,7 +1,6 @@
-package com.ttn.producer.service;
+package com.ttn.consumer.service;
 
-import com.ttn.producer.model.EncryptionMode;
-import com.ttn.producer.repository.EncryptionModeRepository;
+import com.ttn.consumer.repository.EncryptionModeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +15,5 @@ public class EncryptionModeService {
                 .findFirst()
                 .map(encryptionMode -> encryptionMode.getIsGCMEnabled())
                 .orElse(false);
-    }
-
-    public void updateMode(boolean mode) {
-        EncryptionMode encryptionMode = encryptionModeRepository.findAll()
-                .stream()
-                .findFirst()
-                .orElse(new EncryptionMode());
-        encryptionMode.setIsGCMEnabled(mode);
-        encryptionModeRepository.save(encryptionMode);
     }
 }

@@ -17,11 +17,9 @@ public class EncryptionModeController {
     private final EncryptionModeService encryptionModeService;
 
     @PostMapping("/update")
-    public ResponseEntity<String> addMode(@RequestParam Boolean mode){
-        EncryptionMode encryptionMode = new EncryptionMode();
-        encryptionMode.setIsGCMEnabled(mode);
-        encryptionModeService.add(encryptionMode);
-        return new ResponseEntity<>("Mode updated successfully", HttpStatus.CREATED);
+    public ResponseEntity<String> updateMode(@RequestParam Boolean mode){
+        encryptionModeService.updateMode(mode);
+        return ResponseEntity.ok("Mode updated successfully");
     }
 
     @GetMapping
