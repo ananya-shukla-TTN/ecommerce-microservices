@@ -1,5 +1,6 @@
 package com.ttn.consumer.dto;
 
+import com.ttn.consumer.validation.annotation.IndianNumberMatch;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
@@ -16,6 +17,10 @@ public class OrderDto {
     @NotBlank(message = "Customer email is required")
     @Email(message = "Invalid email format")
     private String customerEmail;
+
+    @NotBlank(message = "Customer contact number is required")
+    @IndianNumberMatch
+    private String customerContact;
 
     @NotNull(message = "Total amount cannot be null")
     @DecimalMin(value = "0.0", inclusive = false, message = "Total amount must be greater than 0")

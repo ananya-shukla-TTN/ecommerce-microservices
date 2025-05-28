@@ -21,6 +21,7 @@ public class Order {
     private String id;
 
     private String customerEmail;
+    private String customerContact;
     private LocalDateTime dateCreated;
     private BigDecimal totalAmount;
     private OrderStatus orderStatus;
